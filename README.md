@@ -1,6 +1,8 @@
 # Call Attendant
 ![PyPI](https://img.shields.io/pypi/v/callattendant?style=flat&link=https://pypi.org/project/callattendant/) ![PyPI - License](https://img.shields.io/pypi/l/callattendant?link=https://github.com/emxsys/callattendant/blob/master/LICENSE) ![PyPI - Status](https://img.shields.io/pypi/status/callattendant) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/emxsys/callattendant/callattendant)
 
+
+
 #### `pip install callattendant`
 
 The Call Attendant (__callattendant__) is an auto attendant with an integrated call blocker and 
@@ -27,7 +29,22 @@ Thanks!_
 - [Overview](#overview)
 - [Quick Start](#quick-start)
 
+## Differences between [emxsys](https://github.com/emxsys)/**[callattendant](https://github.com/emxsys/callattendant)** and this fork.
+
+This fork extends the regular-expression checking for blocked and permitted names and numbers.
+
+Four files are added: blocknameslist.txt, blocknumberslist.txt, permitnameslist.txt, and permitnumberslist.txt. Each line in the files has the format:
+
+​	`regular-expression: description`
+
+For example, to block calls whose names end with "PAC" (political action committee) you could add a line to blocknameslist.txt:
+
+​	`PAC^: Political action committee`
+
+That's a regular expression that matches "PAC" at the end of the name.
+
 ## Overview
+
 The Call Attendant (__callattendant__) is a python-based, automated call attendant that runs on a
 lightweight Raspberry Pi, or other Linux-based system, coupled with a US Robotics 5637 USB modem.
 

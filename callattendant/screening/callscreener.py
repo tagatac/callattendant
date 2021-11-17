@@ -75,6 +75,7 @@ class CallScreener(object):
                 print(">> Checking blocked patterns...")
                 for key in block["name_patterns"].keys():
                     match = re.search(key, name)
+                    print(f"re.search('{key}', '{name}') returned {match}")
                     if match:
                         reason = block["name_patterns"][key]
                         print(reason)

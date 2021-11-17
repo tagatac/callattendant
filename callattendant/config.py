@@ -13,6 +13,7 @@ import types
 
 from tempfile import gettempdir
 from werkzeug.utils import import_string
+from listfiles import read_list_file
 
 # This default configuration (used when when a configuration file is not provided)
 # will record messages from blocked (denied) callers, and will simply pass permitted
@@ -32,13 +33,13 @@ default_config = {
     "PHONE_DISPLAY_FORMAT": "###-###-####",
 
     "BLOCK_ENABLED": True,
-    "BLOCK_SERVICE": "NOMOROBO",
+    "BLOCK_SERVICE": "",
 
-    "BLOCK_NAME_PATTERNS": {"V[0-9]{15}": "Telemarketer Caller ID", },
-    "BLOCK_NUMBER_PATTERNS": {},
+    "BLOCK_NAME_PATTERNS": read_list_file('callattendant/blocknameslist.txt'),
+    "BLOCK_NUMBER_PATTERNS": read_list_file('callattendant/blocknumberslist.txt'),
 
-    "PERMIT_NAME_PATTERNS": {},
-    "PERMIT_NUMBER_PATTERNS": {},
+    "PERMIT_NAME_PATTERNS": read_list_file('callattendant/permitnameslist.txt'),
+    "PERMIT_NUMBER_PATTERNS": read_list_file('callattendant/permitnumberslist.txt'),
 
     "BLOCKED_ACTIONS": ("answer", "greeting", "voice_mail"),
     "BLOCKED_GREETING_FILE": "resources/blocked_greeting.wav",
@@ -46,7 +47,7 @@ default_config = {
 
     "SCREENED_ACTIONS": ("answer", "greeting", "record_message"),
     "SCREENED_GREETING_FILE": "resources/general_greeting.wav",
-    "SCREENED_RINGS_BEFORE_ANSWER": 0,
+    "SCREENED_RINGS_BEFORE_ANSWER": 100,
 
     "PERMITTED_ACTIONS": ("ignore",),
     "PERMITTED_GREETING_FILE": "resources/general_greeting.wav",
