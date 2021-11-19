@@ -39,9 +39,11 @@ Four files are added: blocknameslist.txt, blocknumberslist.txt, permitnameslist.
 
 For example, to block calls whose names end with "PAC" (political action committee) you could add a line to blocknameslist.txt:
 
-​	`PAC^: Political action committee`
+​	`PAC$: Political action committee`
 
 That's a regular expression that matches "PAC" at the end of the name.
+
+The web user interface now has a Regex Lists page, where a user can edit the blocks and permit files, adding or removing patterns. It's just free-form editing - somewhat crude, but it gets the job done.
 
 ## Overview
 

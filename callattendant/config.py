@@ -13,7 +13,6 @@ import types
 
 from tempfile import gettempdir
 from werkzeug.utils import import_string
-from listfiles import read_list_file
 
 # This default configuration (used when when a configuration file is not provided)
 # will record messages from blocked (denied) callers, and will simply pass permitted
@@ -35,11 +34,11 @@ default_config = {
     "BLOCK_ENABLED": True,
     "BLOCK_SERVICE": "",
 
-    "BLOCK_NAME_PATTERNS": read_list_file('callattendant/blocknameslist.txt'),
-    "BLOCK_NUMBER_PATTERNS": read_list_file('callattendant/blocknumberslist.txt'),
+    "BLOCK_NAME_PATTERNS": 'callattendant/blocknameslist.txt',
+    "BLOCK_NUMBER_PATTERNS": 'callattendant/blocknumberslist.txt',
 
-    "PERMIT_NAME_PATTERNS": read_list_file('callattendant/permitnameslist.txt'),
-    "PERMIT_NUMBER_PATTERNS": read_list_file('callattendant/permitnumberslist.txt'),
+    "PERMIT_NAME_PATTERNS": 'callattendant/permitnameslist.txt',
+    "PERMIT_NUMBER_PATTERNS": 'callattendant/permitnumberslist.txt',
 
     "BLOCKED_ACTIONS": ("answer", "greeting", "voice_mail"),
     "BLOCKED_GREETING_FILE": "resources/blocked_greeting.wav",

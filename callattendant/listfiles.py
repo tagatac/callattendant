@@ -29,7 +29,7 @@
 
 import os
 
-def read_list_file(fname):
+def read_list_file_list(fname):
     list = {}
     try:
         with open(fname) as file:
@@ -49,3 +49,16 @@ def read_list_file(fname):
     return list
 
 
+def read_list_file_text(fname):
+    contents = ''
+    try:
+        with open(fname) as file:
+            contents = file.read()
+    except FileNotFoundError:
+        pass
+    
+    return contents
+
+def write_list_file_text(fname, text):
+    with open(fname, 'w') as file:
+        file.write(text)

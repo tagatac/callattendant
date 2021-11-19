@@ -1,3 +1,4 @@
 V[0-9]{15}: Telemarketer Caller ID 
-[Pp][Aa][Cc]^: Political Action Committees
+[Pp][Aa][Cc]$: Political Action Committees
 [Oo]fficer: Fake police officer
+

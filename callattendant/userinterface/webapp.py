@@ -50,6 +50,7 @@ from screening.query_db import query_db
 from screening.blacklist import Blacklist
 from screening.whitelist import Whitelist
 from messaging.voicemail import Message
+import listfiles
 
 # Create the Flask micro web-framework application
 app = Flask(__name__)
@@ -560,7 +561,7 @@ def callers_blocked():
         format_total=True,
         format_number=True,
     )
-    # Render the resullts with pagination
+    # Render the results with pagination
     return render_template(
         'callers_blocked.html',
         active_nav_item='blocked',
@@ -863,6 +864,29 @@ def settings():
         config_file=file_path,
         curr_settings=curr_settings,
         file_settings=file_settings)
+
+@app.route('/callers/regexlists')
+def callers_regexlists():
+    # Render the page
+    return render_template(
+        'callers_regexlists.html',
+        active_nav_item='regexlists',
+        blocknameslist=listfiles.read_list_file_text('callattendant/blocknameslist.txt'),
+        blocknumberslist=listfiles.read_list_file_text('callattendant/blocknumberslist.txt'),
+        permitnameslist=listfiles.read_list_file_text('callattendant/permitnameslist.txt'),
+        permitnumberslist=listfiles.read_list_file_text('callattendant/permitnumberslist.txt'),
+    )
+
+import json
+
+@app.route('/callers/regexlists/save', methods=['POST'])
+def callers_regexlists_save():
+    listfiles.write_list_file_text('callattendant/blocknameslist.txt', request.form['blocknameslist'])
+    listfiles.write_list_file_text('callattendant/blocknumberslist.txt', request.form['blocknumberslist'])
+    listfiles.write_list_file_text('callattendant/permitnameslist.txt', request.form['permitnameslist'])
+    listfiles.write_list_file_text('callattendant/permitnumberslist.txt', request.form['permitnumberslist'])
+    
+    return 'updated';
 
 
 def format_phone_no(number):
