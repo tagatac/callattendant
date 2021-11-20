@@ -49,7 +49,7 @@ class CallScreener(object):
                 print(">> Checking permitted patterns...")
                 list = listfiles.read_list_file_list(permit["name_patterns"])
                 for key in list.keys():
-                    match = re.search(key, name)
+                    match = re.search(key, name, re.IGNORECASE)
                     if match:
                         reason = list[key]
                         print(reason)
@@ -79,7 +79,7 @@ class CallScreener(object):
                 print(">> Checking blocked patterns...")
                 list = listfiles.read_list_file_list(block["name_patterns"])
                 for key in list.keys():
-                    match = re.search(key, name)
+                    match = re.search(key, name, re.IGNORECASE)
                     if match:
                         reason = list[key]
                         print(reason)

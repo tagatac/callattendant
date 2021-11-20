@@ -867,25 +867,29 @@ def settings():
 
 @app.route('/callers/regexlists')
 def callers_regexlists():
+    config = current_app.config.get("MASTER_CONFIG")
+    
     # Render the page
     return render_template(
         'callers_regexlists.html',
         active_nav_item='regexlists',
-        blocknameslist=listfiles.read_list_file_text('callattendant/blocknameslist.txt'),
-        blocknumberslist=listfiles.read_list_file_text('callattendant/blocknumberslist.txt'),
-        permitnameslist=listfiles.read_list_file_text('callattendant/permitnameslist.txt'),
-        permitnumberslist=listfiles.read_list_file_text('callattendant/permitnumberslist.txt'),
+        blocknameslist=listfiles.read_list_file_text(config.get('BLOCK_NAME_PATTERNS')),
+        blocknumberslist=listfiles.read_list_file_text(config.get('BLOCK_NUMBER_PATTERNS')),
+        permitnameslist=listfiles.read_list_file_text(config.get('PERMIT_NAME_PATTERNS')),
+        permitnumberslist=listfiles.read_list_file_text(config.get('PERMIT_NUMBER_PATTERNS')),
     )
 
 import json
 
 @app.route('/callers/regexlists/save', methods=['POST'])
 def callers_regexlists_save():
-    listfiles.write_list_file_text('callattendant/blocknameslist.txt', request.form['blocknameslist'])
-    listfiles.write_list_file_text('callattendant/blocknumberslist.txt', request.form['blocknumberslist'])
-    listfiles.write_list_file_text('callattendant/permitnameslist.txt', request.form['permitnameslist'])
-    listfiles.write_list_file_text('callattendant/permitnumberslist.txt', request.form['permitnumberslist'])
-    
+    config = current_app.config.get("MASTER_CONFIG")
+
+    listfiles.write_list_file_text(config.get('BLOCK_NAME_PATTERNS'), request.form['blocknameslist'])
+    listfiles.write_list_file_text(config.get('BLOCK_NUMBER_PATTERNS'), request.form['blocknumberslist'])
+    listfiles.write_list_file_text(config.get('PERMIT_NAME_PATTERNS'), request.form['permitnameslist'])
+    listfiles.write_list_file_text(config.get('PERMIT_NUMBER_PATTERNS'), request.form['permitnumberslist'])
+
     return 'updated';
 
 

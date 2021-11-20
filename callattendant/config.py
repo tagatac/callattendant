@@ -34,11 +34,11 @@ default_config = {
     "BLOCK_ENABLED": True,
     "BLOCK_SERVICE": "",
 
-    "BLOCK_NAME_PATTERNS": 'callattendant/blocknameslist.txt',
-    "BLOCK_NUMBER_PATTERNS": 'callattendant/blocknumberslist.txt',
+    "BLOCK_NAME_PATTERNS": 'blocknameslist.txt',
+    "BLOCK_NUMBER_PATTERNS": 'blocknumberslist.txt',
 
-    "PERMIT_NAME_PATTERNS": 'callattendant/permitnameslist.txt',
-    "PERMIT_NUMBER_PATTERNS": 'callattendant/permitnumberslist.txt',
+    "PERMIT_NAME_PATTERNS": 'permitnameslist.txt',
+    "PERMIT_NUMBER_PATTERNS": 'permitnumberslist.txt',
 
     "BLOCKED_ACTIONS": ("answer", "greeting", "voice_mail"),
     "BLOCKED_GREETING_FILE": "resources/blocked_greeting.wav",
@@ -46,7 +46,7 @@ default_config = {
 
     "SCREENED_ACTIONS": ("answer", "greeting", "record_message"),
     "SCREENED_GREETING_FILE": "resources/general_greeting.wav",
-    "SCREENED_RINGS_BEFORE_ANSWER": 100,
+    "SCREENED_RINGS_BEFORE_ANSWER": 0,
 
     "PERMITTED_ACTIONS": ("ignore",),
     "PERMITTED_GREETING_FILE": "resources/general_greeting.wav",
@@ -69,6 +69,8 @@ default_config = {
     "GPIO_LED_MESSAGE_BRIGHTNESS": 100,
     "GPIO_LED_MESSAGE_COUNT_PINS": (8, 7, 27, 23, 10, 11, 9, 18),
     "GPIO_LED_MESSAGE_COUNT_KWARGS": {"active_high": True},
+    
+    "EMAIL_SETTINGS_FILE": 'emailsettings.py',
 }
 
 
@@ -152,6 +154,12 @@ class Config(dict):
         self["VOICE_MAIL_LEAVE_MESSAGE_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_LEAVE_MESSAGE_FILE"])
         self["VOICE_MAIL_INVALID_RESPONSE_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_INVALID_RESPONSE_FILE"])
         self["VOICE_MAIL_MENU_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_MENU_FILE"])
+
+        self["BLOCK_NAME_PATTERNS"] = os.path.join(datapath, self["BLOCK_NAME_PATTERNS"])
+        self["BLOCK_NUMBER_PATTERNS"] = os.path.join(datapath, self["BLOCK_NUMBER_PATTERNS"])
+
+        self["PERMIT_NAME_PATTERNS"] = os.path.join(datapath, self["PERMIT_NAME_PATTERNS"])
+        self["PERMIT_NUMBER_PATTERNS"] = os.path.join(datapath, self["PERMIT_NUMBER_PATTERNS"])
 
         self["VOICE_MAIL_MESSAGE_FOLDER"] = os.path.join(datapath, self["VOICE_MAIL_MESSAGE_FOLDER"])
 
