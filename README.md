@@ -45,6 +45,8 @@ That's a regular expression that matches "PAC" at the end of the name.
 
 The web user interface now has a Regex Lists page, where a user can edit the blocks and permit files, adding or removing patterns. It's just free-form editing - somewhat crude, but it gets the job done.
 
+Also, it's now possible for Call Attendant to send an e-mail notification when a caller leaves a message.
+
 ## Overview
 
 The Call Attendant (__callattendant__) is a python-based, automated call attendant that runs on a

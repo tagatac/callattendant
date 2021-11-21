@@ -143,25 +143,25 @@ class Config(dict):
         if not datapath:
             return
 
-        self["DB_FILE"] = os.path.join(datapath, self["DATABASE"])
+        self["DB_FILE"] = os.path.normpath(os.path.join(datapath, self["DATABASE"]))
 
-        self["BLOCKED_GREETING_FILE"] = os.path.join(rootpath, self["BLOCKED_GREETING_FILE"])
-        self["SCREENED_GREETING_FILE"] = os.path.join(rootpath, self["SCREENED_GREETING_FILE"])
-        self["PERMITTED_GREETING_FILE"] = os.path.join(rootpath, self["PERMITTED_GREETING_FILE"])
+        self["BLOCKED_GREETING_FILE"] = os.path.normpath(os.path.join(rootpath, self["BLOCKED_GREETING_FILE"]))
+        self["SCREENED_GREETING_FILE"] = os.path.normpath(os.path.join(rootpath, self["SCREENED_GREETING_FILE"]))
+        self["PERMITTED_GREETING_FILE"] = os.path.normpath(os.path.join(rootpath, self["PERMITTED_GREETING_FILE"]))
 
-        self["VOICE_MAIL_GREETING_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_GREETING_FILE"])
-        self["VOICE_MAIL_GOODBYE_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_GOODBYE_FILE"])
-        self["VOICE_MAIL_LEAVE_MESSAGE_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_LEAVE_MESSAGE_FILE"])
-        self["VOICE_MAIL_INVALID_RESPONSE_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_INVALID_RESPONSE_FILE"])
-        self["VOICE_MAIL_MENU_FILE"] = os.path.join(rootpath, self["VOICE_MAIL_MENU_FILE"])
+        self["VOICE_MAIL_GREETING_FILE"] = os.path.normpath(os.path.join(rootpath, self["VOICE_MAIL_GREETING_FILE"]))
+        self["VOICE_MAIL_GOODBYE_FILE"] = os.path.normpath(os.path.join(rootpath, self["VOICE_MAIL_GOODBYE_FILE"]))
+        self["VOICE_MAIL_LEAVE_MESSAGE_FILE"] = os.path.normpath(os.path.join(rootpath, self["VOICE_MAIL_LEAVE_MESSAGE_FILE"]))
+        self["VOICE_MAIL_INVALID_RESPONSE_FILE"] = os.path.normpath(os.path.join(rootpath, self["VOICE_MAIL_INVALID_RESPONSE_FILE"]))
+        self["VOICE_MAIL_MENU_FILE"] = os.path.normpath(os.path.join(rootpath, self["VOICE_MAIL_MENU_FILE"]))
 
-        self["BLOCK_NAME_PATTERNS"] = os.path.join(datapath, self["BLOCK_NAME_PATTERNS"])
-        self["BLOCK_NUMBER_PATTERNS"] = os.path.join(datapath, self["BLOCK_NUMBER_PATTERNS"])
+        self["BLOCK_NAME_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["BLOCK_NAME_PATTERNS"]))
+        self["BLOCK_NUMBER_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["BLOCK_NUMBER_PATTERNS"]))
 
-        self["PERMIT_NAME_PATTERNS"] = os.path.join(datapath, self["PERMIT_NAME_PATTERNS"])
-        self["PERMIT_NUMBER_PATTERNS"] = os.path.join(datapath, self["PERMIT_NUMBER_PATTERNS"])
+        self["PERMIT_NAME_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["PERMIT_NAME_PATTERNS"]))
+        self["PERMIT_NUMBER_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["PERMIT_NUMBER_PATTERNS"]))
 
-        self["VOICE_MAIL_MESSAGE_FOLDER"] = os.path.join(datapath, self["VOICE_MAIL_MESSAGE_FOLDER"])
+        self["VOICE_MAIL_MESSAGE_FOLDER"] = os.path.normpath(os.path.join(datapath, self["VOICE_MAIL_MESSAGE_FOLDER"]))
 
     def validate(self):
         """
