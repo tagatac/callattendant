@@ -58,6 +58,13 @@ default_config = {
     "VOICE_MAIL_LEAVE_MESSAGE_FILE": "resources/please_leave_message.wav",
     "VOICE_MAIL_MENU_FILE": "resources/voice_mail_menu.wav",
     "VOICE_MAIL_MESSAGE_FOLDER": "messages",
+    
+    "EMAIL_SERVER": "SMTP server",
+    "EMAIL_PORT": 465,
+    "EMAIL_SERVER_USERNAME": 'user name to log into the SMTP server',
+    "EMAIL_SERVER_PASSWORD": 'password to log into the SMTP server',
+    "EMAIL_FROM": 'e-mail address to appear in the "From:" header',
+    "EMAIL_TO": 'e-mail address to send the voicemail notification to',
 
     "GPIO_LED_RING_PIN": 14,
     "GPIO_LED_RING_BRIGHTNESS": 100,
@@ -70,7 +77,6 @@ default_config = {
     "GPIO_LED_MESSAGE_COUNT_PINS": (8, 7, 27, 23, 10, 11, 9, 18),
     "GPIO_LED_MESSAGE_COUNT_KWARGS": {"active_high": True},
     
-    "EMAIL_SETTINGS_FILE": 'emailsettings.py',
 }
 
 
