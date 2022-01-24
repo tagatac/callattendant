@@ -23,6 +23,9 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+from email.mime.audio import MIMEAudio
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import os
 import threading
 from datetime import datetime
@@ -156,13 +159,17 @@ class VoiceMail:
                 context = ssl.create_default_context()
                 with smtplib.SMTP_SSL(self.config["EMAIL_SERVER"], self.config["EMAIL_PORT"], context=context) as server:
                     server.login(self.config["EMAIL_SERVER_USERNAME"], self.config["EMAIL_SERVER_PASSWORD"])
-                    message = f"""Subject: Phone  message recorded
-From: {self.config["EMAIL_FROM"]}
-To: {self.config["EMAIL_TO"]}
-
-Caller {caller["NMBR"]}, {caller["NAME"]} left a message.
-"""
-                    server.sendmail(self.config["EMAIL_FROM"], self.config["EMAIL_TO"], message)
+                    message = MIMEMultipart()
+                    message['Subject'] = 'Phone message recorded'
+                    message['From'] = self.config["EMAIL_FROM"]
+                    message['To'] = self.config["EMAIL_TO"]
+                    body = MIMEText(f'Caller {caller["NMBR"]}, {caller["NAME"]} left a message.\n')
+                    message.attach(body)
+                    with open(filepath, 'rb') as wavefile:
+                        att = MIMEAudio(wavefile.read(), 'wave')
+                        att.add_header('Content-Disposition', f'attachment;filename={os.path.basename(filepath)}')
+                        message.attach(att)
+                    server.sendmail(self.config["EMAIL_FROM"], self.config["EMAIL_TO"], message.as_string())
             
             # Return the messageID on success
             return msg_no
