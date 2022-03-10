@@ -90,6 +90,10 @@ PERMIT_NAME_PATTERNS = 'permitnameslist.txt'
 #   Example: 01628: My area
 PERMIT_NUMBER_PATTERNS = 'permitnumberslist.txt'
 
+# PERMIT_NEXT_CALL_FLAG: Temporary file, created and destroyed by the app,
+# to indicate whether the next incoming call should be permitted.
+PERMIT_NEXT_CALL_FLAG = 'permitnextcall.flag'
+
 
 # BLOCK_SERVICE: The name of the online service used to lookup robocallers and spam numbers.
 #   Currently, only NOMOROBO is supported and it is for the USA. Areas outside the USA should set

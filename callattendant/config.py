@@ -39,6 +39,8 @@ default_config = {
 
     "PERMIT_NAME_PATTERNS": 'permitnameslist.txt',
     "PERMIT_NUMBER_PATTERNS": 'permitnumberslist.txt',
+    
+    "PERMIT_NEXT_CALL_FLAG": 'permitnextcall.flag',
 
     "BLOCKED_ACTIONS": ("answer", "greeting", "voice_mail"),
     "BLOCKED_GREETING_FILE": "resources/blocked_greeting.wav",
@@ -166,6 +168,8 @@ class Config(dict):
 
         self["PERMIT_NAME_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["PERMIT_NAME_PATTERNS"]))
         self["PERMIT_NUMBER_PATTERNS"] = os.path.normpath(os.path.join(datapath, self["PERMIT_NUMBER_PATTERNS"]))
+        
+        self["PERMIT_NEXT_CALL_FLAG"] = os.path.normpath(os.path.join(datapath, self["PERMIT_NEXT_CALL_FLAG"]))
 
         self["VOICE_MAIL_MESSAGE_FOLDER"] = os.path.normpath(os.path.join(datapath, self["VOICE_MAIL_MESSAGE_FOLDER"]))
 

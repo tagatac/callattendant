@@ -51,6 +51,7 @@ from screening.blacklist import Blacklist
 from screening.whitelist import Whitelist
 from messaging.voicemail import Message
 import listfiles
+import nextcall
 
 # Create the Flask micro web-framework application
 app = Flask(__name__)
@@ -710,6 +711,11 @@ def callers_permitted_delete(phone_no):
     whitelist.remove_number(number)
 
     return redirect("/callers/permitted", code=301)  # (re)moved permamently
+
+@app.route('/callers/permitnextcall')
+def Callers_permit_next_call():
+    nextcall.permit_next_call(current_app.config.get("MASTER_CONFIG").get("PERMIT_NEXT_CALL_FLAG"))
+    return 'Next call will be permitted.'
 
 
 @app.route('/messages')
