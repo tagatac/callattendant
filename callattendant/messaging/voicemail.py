@@ -162,7 +162,7 @@ To: {self.config["EMAIL_TO"]}
 
 Caller {caller["NMBR"]}, {caller["NAME"]} left a message.
 """
-                    server.sendmail(self.config["EMAIL_FROM"], self.config["EMAIL_TO"], message)
+                    server.sendmail(self.config["EMAIL_FROM"], self.config["EMAIL_TO"].split(','), message)
             
             # Return the messageID on success
             return msg_no
